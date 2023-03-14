@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang=""en-us">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Page Title</title>
+</head>
+<body>
+    <!-- this div is the parent -->
+    <div id="container">
+        <!-- these divs are the children, on their own branch -->
+        <!-- possible selectors to use to refer to the div below: div.display, .display, #container > .display, div#container > div.display -->
+        <div class="display"></div>
+        <!-- div above is the sibling of the div below -->
+        <div class="controls"></div>
+    </div>
+
+      <script>
+        // below, using relational selectors with special properties owned by the nodes
+        // identifying a certain node based on its relationships to the nodes around it
+
+        // element.querySelectorAll(selectors) returns a "nodelist" containing references to all of the matches of the selectors
+
+        // element.querySelector(selector) returns a reference to the first match of selector
+
+        // selects the #container div 
+        const container = document.querySelector('#container');
+
+        // selects the first child of #container => .display
+        console.dir(container.firstElementChild);                      
+    
+        // selects the .controls div
+        const controls = document.querySelector('.controls');   
+
+        // selects the prior sibling => .display
+        console.dir(controls.previousElementSibling);   
+        
+        // document.createElement(tagName, [options]) creates a new element where [options] are optional parameters that can be
+        // added to the function
+        // this does not put the new element into the DOM- it only creates it in memory
+        // that way, I can manipulate the element by adding styles, classes, ids, texts, etc. before placing it on the page
+        // creates a new div referenced in the variable 'div'
+        const div = document.createElement('div');
+
+        // adds the indicated style rule
+        div.style.color = 'blue';
+
+        // adds several style rules
+        div.style.cssText = 'color: blue; background; white;';
+
+        // adds several styles rules
+        div.setAttribute('style', 'color: blue; background: white;');
+
+        // accesses the div's background-color style
+        div.style.backgroundColor
+
+        // also accesses the div's background-color style
+        div.style['background-color']
+
+        // ok in a string
+        div.style.cssText = 'background-color: white;'
+
+        // if id exists, update it to 'theDiv', else create an id with value 'theDiv'
+        div.setAttribute('id', 'theDiv');
+
+        // returns value of specified attribute, in this case 'theDiv'
+        div.getAttribute('id');
+
+        // removes specified attribute
+        div.removeAttribute('id');
+
+        // adds class 'new' to my new div
+        div.classList.add('new');
+
+        // removes 'new' class from div
+        div.classList.remove('new');
+
+        // if div doesn't have class 'active' then add it, or if it does, then remove it
+        // it is often standard and cleaner to toggle a CSS style rather than adding and removing inline CSS
+        div.classList.toggle('active');
+
+        // creates a text node containing 'Hello World!' and inserts it in div
+        div.textContent = 'Hello World!';
+
+        // renders the HTML inside div
+        div.innerHTML = '<span>Hello World!</span>';
+
+      </script>
+</body>
+</html>
